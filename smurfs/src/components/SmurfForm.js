@@ -1,6 +1,6 @@
 import React, { component } from 'react';
 
-class SmurfForm extends Component {
+class SmurfForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
