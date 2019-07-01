@@ -6,17 +6,50 @@ import './App.css';
  Just remember, `how do I `connect` my components to redux?`
  `How do I ensure that my component links the state to props?`
  */
+
+import { connect } from 'react-deux';
+import { getSmurfs, addSmurf, deleteSmurf } from '../actions';
+import SmurfList from './SmurfList';
+import SmurfForm from './SmurfForm';
+
+
 class App extends Component {
+  componentDidMount() {
+    this.props.getSmurfs();
+  }
+
+  addSmurf = smurf => {
+    this.props.addSmurf(smurf)
+  }
+
+  deleteSmurf = id => {
+    this.props.deleteSmurf(id);
+  }
+
   render() {
     return (
       <div className="App">
         <h1>SMURFS! 2.0 W/ Redux</h1>
-        <div>Welcome to your Redux version of Smurfs!</div>
-        <div>Start inside of your `src/index.js` file!</div>
+        {(this.props.fetchingSmurfs || this.props.addingSmurf) && <p>LOADING</p>}
         <div>Have fun!</div>
+        <SmurfList 
+        smurfs={this.props.smurf} 
+        deleteSmurf={this.deleteSmurf} />
+
+        <SmurfForm addSmurf={this.addSmurf} />
+
       </div>
     );
   }
 }
 
-export default App;
+//Map State to Props
+const mapStateToProps = state => ({
+  smurfs: state.smurfs,
+  fetchingSmurfs: state.fetchingSmurfs,
+  addingSmurf: state.addingSmurf,
+  updatingSmurf: state.updatingSmurf,
+  error: StorageEvent.error,
+})
+
+export default connect(mapStateToProps, { getSmurfs, addSmurf, deleteSmurf })(App);
