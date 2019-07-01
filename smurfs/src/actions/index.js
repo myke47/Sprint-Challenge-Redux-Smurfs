@@ -5,6 +5,17 @@
 
 import axios from 'axios';
 
+export const FETCHING_SMURFS = 'FETCHING_SMURFS';
+export const FETCHING_SMURFS_SUCCESSFUL = 'FETCHING_SMURFS_SUCCESSFUL';
+export const FETCHING_SMURFS_FAILED = 'FETCHING_SMURFS_FAILED'
+
+export const ADDING_SMURF_START = 'ADDING_SMURF_START';
+export const ADDING_SMURF_SUCCESSFUL = 'ADDING_SMURF_SUCCESSFUL';
+export const ADDING_SMURF_FAILED = 'ADDING_SMURF_FAILED';
+
+export const DELETING_SMURF_START = 'DELETING_SMURF_START';
+export const DELETING_SMURF_SUCCESSFUL = 'DELETING_SMURF_SUCCESSFUL';
+export const DELETING_SMURF_FAILED = 'DELETING_SMURF_FAILED';
 
 
 /*
@@ -31,6 +42,7 @@ export const addSmurf = smurf => dispatch => {
   axios
   .post('http://localhost:3333/smurfs', smurf)
   .then(res => dispatch({ type: ADDING_SMURF_SUCCESSFUL, payload: res.data }))
+  .catch(err => dispatch({ type: ADDING_SMURF_FAILED, payload: err }))
 };
 
 export const deleteSmurf = id => dispatch => {
