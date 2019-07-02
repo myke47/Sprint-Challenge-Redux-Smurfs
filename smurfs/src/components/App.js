@@ -7,7 +7,7 @@ import './App.css';
  `How do I ensure that my component links the state to props?`
  */
 
-import { connect } from 'react-deux';
+import { connect } from 'react-redux';
 import { getSmurfs, addSmurf, deleteSmurf } from '../actions';
 import SmurfList from './SmurfList';
 import SmurfForm from './SmurfForm';

@@ -46,6 +46,9 @@ class SmurfForm extends React.Component {
             value={this.state.height}
             height='height'
             />
+            <button className="add-smurf" onClick={this.addSmurf}>
+              Add Smurf
+            </button>
         </form>
       </div>
     )

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Smurf = props = {
+const Smurf = props => {
   return (
     <div className="smurfy-card">
       <h3 className="smurf-name">{props.smurf.name}</h3>
